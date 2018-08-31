@@ -1,7 +1,6 @@
 # Raindrop Passport Module
 
-The Raindrop strategy authenticates a user based on the user's Hydro ID and verifying the
-user input a raindrop-generated message into the Hydro App.
+The 'raindrop' strategy authenticates a user by confirming the user has input an API-generated message into the Hydro mobile app.
 
 ## Installation
 
@@ -49,28 +48,25 @@ passport.authenticate('raindrop', {
 
 ### Generate Verification Message
 
-```
-router.post('/login', function(req, res, next) {
-    /* 'HydrogenAPI', in this example, is the export of the 'Configuration' above.
-       See 'Complete Example' below for a full in-context example */
-    req.session.hydroMessage = HydrogenAPI.raindrop.generateMessage();
-    res.redirect('/');
-});
-```
+`let message = HydrogenAPI.raindrop.generateMessage();`
+
+In this example `HydrogenAPI` is the export from the above 'Configuration'. See the 'Complete Example' below for the full
+in-context configuration.
 
 ## Complete Example
 
-A complete example of using this library TODO: Insert Here
+A [complete example](https://github.com/Red-Maximus/Raindrop-Passport-Authentication) of using this library.
 
 ## Documentation
 
-TODO: Insert Hydro API documentation
-TODO: Insert Passport documentation
+[Hydrogen API](https://www.hydrogenplatform.com/docs/hydro/v1/?javascript#Client-side)
+
+[Passport JS](http://www.passportjs.org/docs/)
 
 ## Author
 
-TODO: Insert me here
+[Red-Maximus](https://github.com/Red-Maximus)
 
 ## License
 
-TODO: Insert license here
+[Unlicensed](http://unlicense.org/)
