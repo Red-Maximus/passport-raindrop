@@ -1,0 +1,11 @@
+{
+  "name": "passport-raindrop",
+  "version": "1.0.0",
+  "description": "A passport module for performing Hydrogen Raindrop authentication",
+  "main": "index.js",
+  "dependencies": {
+    "@hydrogenplatform/raindrop": "^0.2.7",
+    "passport-strategy": "^1.0.0",
+    "util": "^0.11.0"
+  }
+}
