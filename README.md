@@ -15,15 +15,15 @@ fails if no user is found.
 ```
 const passport = require('passport'),
       RaindropStrategy = require('passport-raindrop')
+      
 
-/* Initialize the raindrop
-   Declared as a variable in order to access Raindrop SDK functions (primarily 'generateMessage') from within the app. */
+// Initialize the raindrop. Declared as a variable in order to access Raindrop SDK functions later.   
 let raindrop = new RaindropStrategy({
     environment: ENVIRONMENT,
     clientId: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
     applicationId: APPLICATION_ID
-}, function (authUser, done) {
+}, function (authUser, done) {   
     // This verifies the user and returns it to the authentication
     let user = userDB.find(usr => usr.hydroId === authUser.hydroId);
     return user ? done(null, user) : done(new Error('User not found.'), null);
