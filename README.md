@@ -14,8 +14,7 @@ fails if no user is found.
 
 ```
 const passport = require('passport'),
-      RaindropStrategy = require('passport-raindrop')
-      
+      RaindropStrategy = require('passport-raindrop')      
 
 // Initialize the raindrop. Declared as a variable in order to access Raindrop SDK functions later.   
 let raindrop = new RaindropStrategy({
