@@ -1,6 +1,6 @@
 {
   "name": "passport-raindrop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A passport module for performing Hydrogen Raindrop authentication",
   "main": "./lib",
   "dependencies": {
