@@ -1,32 +1,32 @@
 # Raindrop Passport Module
 
-## Install
+The Raindrop strategy authenticates a user based on the user's Hydro ID and verifying the
+user input a raindrop-generated message into the Hydro App.
+
+## Installation
 
 `$ npm install passport-raindrop`
 
-## Usage
 
-### Configure Strategy
-
-The Raindrop strategy authenticates a user based on the user's Hydro ID and verifying the
-user input a raindrop-generated message into the Hydro App.
+## Configuration
 
 The `verify` callback is required to verify a valid site user is being authenticated. Authentication
 fails if no user is found.
 
 ```
-/* Passport Setup */
+const passport = require('passport'),
+      RaindropStrategy = require('passport-raindrop')
 
-// Initialize the raindrop
-// Declared as a variable in order to access Raindrop SDK functions (primarily 'generateMessage') from within the app.
+/* Initialize the raindrop
+   Declared as a variable in order to access Raindrop SDK functions (primarily 'generateMessage') from within the app. */
 let raindrop = new RaindropStrategy({
-    environment: "Sandbox",
+    environment: ENVIRONMENT,
     clientId: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
     applicationId: APPLICATION_ID
-}, function (hydroId, done) {
+}, function (authUser, done) {
     // This verifies the user and returns it to the authentication
-    let user = userDB.find(usr => usr.hydroId === hydroId);
+    let user = userDB.find(usr => usr.hydroId === authUser.hydroId);
     return user ? done(null, user) : done(new Error('User not found.'), null);
 });
 
@@ -34,11 +34,11 @@ let raindrop = new RaindropStrategy({
 passport.use(raindrop);
 ```
 
+## Usage
+
 ### Authenticate Requests
 
 Use `passport.authenticate()` and specify the 'raindrop' strategy.
-
-For example:
 
 ```
 passport.authenticate('raindrop', {
@@ -46,3 +46,31 @@ passport.authenticate('raindrop', {
     failureRedirect: '/fail'
 })(req, res, next);
 ```
+
+### Generate Verification Message
+
+```
+router.post('/login', function(req, res, next) {
+    /* 'HydrogenAPI', in this example, is the export of the 'Configuration' above.
+       See 'Complete Example' below for full configuration */
+    req.session.hydroMessage = HydrogenAPI.raindrop.generateMessage();
+    res.redirect('/');
+});
+```
+
+## Complete Example
+
+A complete example of using this library TODO: Insert Here
+
+## Documentation
+
+TODO: Insert Hydro API documentation
+TODO: Insert Passport documentation
+
+## Author
+
+TODO: Insert me here
+
+## License
+
+TODO: Insert license here
