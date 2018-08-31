@@ -52,7 +52,7 @@ passport.authenticate('raindrop', {
 ```
 router.post('/login', function(req, res, next) {
     /* 'HydrogenAPI', in this example, is the export of the 'Configuration' above.
-       See 'Complete Example' below for full configuration */
+       See 'Complete Example' below for a full in-context example */
     req.session.hydroMessage = HydrogenAPI.raindrop.generateMessage();
     res.redirect('/');
 });
